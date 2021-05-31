@@ -28,6 +28,7 @@ namespace Sample.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddAppServices(Configuration);
 
             var version = new ApiVersion(1, 0);
