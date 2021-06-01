@@ -6,7 +6,7 @@ namespace Sample.Services.Models
     public class SpecialtyModel
     {
         [SimpleField(IsKey = true)]
-        public Guid Id { get; set; }
+        public Guid SpecialtyId { get; set; }
 
         [SearchableField]
         public string Name { get; set; }
@@ -15,5 +15,7 @@ namespace Sample.Services.Models
         public string Content { get; set; }
 
         public DepartmentModel Department { get; set; }
+
+        public SpecialtyLocalizedModel[] Locales { get; set; }
     }
 }

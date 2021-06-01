@@ -6,7 +6,7 @@ namespace Sample.Services.Models
     public class DoctorModel
     {
         [SimpleField(IsKey = true)]
-        public Guid Id { get; set; }
+        public Guid DoctorId { get; set; }
 
         [SearchableField]
         public string FirstName { get; set; }
@@ -21,5 +21,7 @@ namespace Sample.Services.Models
         public string Overview { get; set; }
 
         public SpecialtyModel[] Specialties { get; set; }
+
+        public DoctorLocalizedModel[] Locales { get; set; }
     }
 }
