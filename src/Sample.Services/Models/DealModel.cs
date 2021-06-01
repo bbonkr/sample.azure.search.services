@@ -5,14 +5,15 @@ namespace Sample.Services.Models
 {
     public class DealModel
     {
-        [SimpleField(IsKey = true)]
-        public Guid DealId { get; set; }
+        public string DealId { get; set; }
 
         [SearchableField]
         public string Name { get; set; }
 
         [SearchableField]
         public string Description { get; set; }
+
+        public HospitalModel Hospital { get; set; }
 
         public ServiceModel[] Services { get; set; }
     }
