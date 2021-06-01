@@ -18,7 +18,7 @@ using Sample.Services.Models;
 
 namespace Sample.Services
 {
-    public class SearchIndexService
+    public class SearchIndexService : ISearchIndexService
     {
         public SearchIndexService(HttpClient client, IMapper mapper, IOptionsMonitor<AzureSearchServicesOptions> optionsMonitor)
         {
@@ -29,28 +29,17 @@ namespace Sample.Services
             this.client = client;
         }
 
-       
-        public async Task CreateIndex()
+
+        public async Task<SearchIndex> CreateIndex()
         {
-            var fieldBuilder=new FieldBuilder();
+            var fieldBuilder = new FieldBuilder();
             var searchFields = fieldBuilder.Build(typeof(HospitalModel));
 
             var suggesters = new List<SearchSuggester>{
-                new SearchSuggester("sg", new[] {
-                    nameof(HospitalModel.Name),
-                    $"{nameof(HospitalModel.Specialties)}/{nameof(SpecialtyModel.Name)}",
-                    $"{nameof(HospitalModel.Doctors)}/{nameof(DoctorModel.Fullname)}",
-                }),
-                new SearchSuggester("sg-hospital", new[]{ nameof(HospitalModel.Name)}),
-                new SearchSuggester("sg-specialty", new[]{
-                    $"{nameof(HospitalModel.Specialties)}/{nameof(SpecialtyModel.Name)}",
-                }),
-                new SearchSuggester("sg-doctor", new[]{
-                    $"{nameof(HospitalModel.Doctors)}/{nameof(DoctorModel.Fullname)}",
-                }),
+              
             };
 
-            var index = new SearchIndex("Hospitals")
+            var index = new SearchIndex("hospitals")
             {
                 Fields = searchFields,
             };
@@ -60,9 +49,9 @@ namespace Sample.Services
                 index.Suggesters.Add(sg);
             }
 
+            var response = await searchIndexClient.CreateIndexAsync(index);
 
-
-            await searchIndexClient.CreateIndexAsync(index);
+            return response.Value;
         }
 
         private SearchIndexClient CreateSearchIndexClient(AzureSearchServicesOptions options)
@@ -77,7 +66,6 @@ namespace Sample.Services
 
 
 
-        private readonly SearchClient searchClient;
         private readonly SearchIndexClient searchIndexClient;
         private readonly IMapper mapper;
         private readonly AzureSearchServicesOptions options;
