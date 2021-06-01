@@ -6,7 +6,7 @@ namespace Sample.Services.Models
     public class HospitalModel
     {
         [SimpleField(IsKey = true)]
-        public Guid Id { get; set; }
+        public Guid HospitalId { get; set; }
 
         [SearchableField]
         public string Name { get; set; }
