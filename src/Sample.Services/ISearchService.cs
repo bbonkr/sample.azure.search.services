@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,5 +21,9 @@ namespace Sample.Services
         Task MergeAsync(IEnumerable<HotelModel> models, CancellationToken cancellationToken = default);
 
         Task DeleteAsync(IEnumerable<HotelModel> models, CancellationToken cancellationToken = default);
+
+        Task CreateIndex<TModel>(string indexName, Expression<Func<TModel, string>> keySelector, CancellationToken cancellationToken = default);
+
+        Task DeleteIndexIfExists(string indexName, CancellationToken cancellationToken = default);
     }
 }
