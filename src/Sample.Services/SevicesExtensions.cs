@@ -12,7 +12,7 @@ namespace Sample.Services
             services.AddHttpClient();
             services.Configure<AzureSearchServicesOptions>(configuration.GetSection(AzureSearchServicesOptions.Name));
             services.AddTransient<ISearchService, SearchService>();
-
+            services.AddTransient<ISearchIndexService, SearchIndexService>();
             
             services.AddAutoMapper(typeof(PlaceHolder).Assembly);
 
