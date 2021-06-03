@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sample.Services.Models
+namespace Sample.Services.Tests.Models
 {
     public class HospitalModel
     {
