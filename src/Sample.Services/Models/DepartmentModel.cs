@@ -1,17 +1,30 @@
 ﻿using Azure.Search.Documents.Indexes;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sample.Services.Models
 {
     public class DepartmentModel
     {
+        [SimpleField(IsKey = true)]
         public string DepartmentId { get; set; }
 
-        [SearchableField]
+        [SearchableField(IsFilterable = true, IsSortable = true)]
         public string Name { get; set; }
 
-        public DepartmenLocalizedModel[] Locales { get; set; }
+        public IEnumerable<DepartmenLocalizedModel> Locales { get; set; } = Enumerable.Empty<DepartmenLocalizedModel>();
 
-        public HospitalModel[] Hospitals { get; set; }
+        public IEnumerable<HospitalModel> Hospitals { get; set; } = Enumerable.Empty<HospitalModel>();
+
+        public class HospitalModel
+        {
+            public string HospitalId { get; set; }
+
+            [SearchableField]
+            public string Name { get; set; }
+
+            [SearchableField]
+            public string Overview { get; set; }
+        }
     }
 }
