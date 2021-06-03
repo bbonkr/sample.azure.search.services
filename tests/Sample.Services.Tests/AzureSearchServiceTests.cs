@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Sample.Services.Models;
+using Sample.Services.Tests.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Sample.Services.Tests
         {
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false)
-                .AddUserSecrets<TestBase>()
+                .AddUserSecrets<AzureSearchConfiguration>()
                 .Build();
 
             _configuration = config.GetSection(nameof(AzureSearchConfiguration)).Get<AzureSearchConfiguration>();
@@ -97,7 +97,6 @@ namespace Sample.Services.Tests
 
             Assert.NotEmpty(result);
         }
-
 
         [Fact, Priority(5)]
         public async Task SearchDocumentsTest()

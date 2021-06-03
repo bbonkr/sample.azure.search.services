@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.App", "src\Sample.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Services", "src\Sample.Services\Sample.Services.csproj", "{4E911838-5819-4CC4-A142-27B7D625F902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Services.Tests", "Sample.Services.Tests\Sample.Services.Tests.csproj", "{5B2ACF7A-A48D-42CB-AB7C-A8569B6720B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Services.Tests", "tests\Sample.Services.Tests\Sample.Services.Tests.csproj", "{5B2ACF7A-A48D-42CB-AB7C-A8569B6720B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
